@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaganath Charulu P | AI & ML Student</title>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Feather Icons for Beautiful Vectors -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        /* CSS Resets & Variables */
+        :root {
+            --bg-deep: #030712;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --border-glow: rgba(255, 255, 255, 0.1);
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Abstract Animated Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: 
+                radial-gradient(circle at 10% 50%, rgba(56, 189, 248, 0.1), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(129, 140, 248, 0.1), transparent 30%);
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: move-blob 12s infinite alternate ease-in-out;
+        }
+        
+        .blob-1 { 
+            background: var(--primary); 
+            width: 400px; height: 400px; 
+            top: -10%; left: -5%; 
+        }
+        
+        .blob-2 { 
+            background: var(--secondary); 
+            width: 350px; height: 350px; 
+            bottom: -10%; right: -5%; 
+            animation-delay: -6s; 
+        }
+        
+        @keyframes move-blob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 100px) scale(1.1); }
+        }
+
+        /* Essential Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.5rem 0;
+            background: rgba(3, 7, 18, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glow);
+            z-index: 100;
+        }
+        
+        .nav-inner {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            letter-spacing: -0.5px; 
+        }
+        
+        .logo span { color: var(--primary); }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--text-main); }
+
+        /* Typography & Utilities */
+        h1, h2, h3 { line-height: 1.2; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg-deep);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-main);
+            background: transparent;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 { 
+            font-size: 4.5rem; 
+            font-weight: 800; 
+            margin-bottom: 1.2rem; 
+            letter-spacing: -1.5px; 
+            background: linear-gradient(to right, #ffffff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p { 
+            font-size: 1.3rem; 
+            color: var(--text-muted); 
+            margin-bottom: 2.5rem; 
+            max-width: 600px;
+        }
+        
+        .hero-actions { display: flex; gap: 1rem; }
+        
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* General Sections */
+        section { padding: 6rem 0; }
+        
+        .section-header { margin-bottom: 3.5rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-header h2 i { color: var(--primary); }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        /* About */
+        .about-text {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            line-height: 1.8;
+            border-left: 3px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+        .about-text strong { color: #fff; }
+
+        /* Skills */
+        .skill-group h3 { 
+            margin-bottom: 1.5rem; 
+            font-size: 1.25rem; 
+            display: flex; align-items: center; gap: 0.5rem; 
+        }
+        
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        
+        .tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: #e5e7eb;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Projects */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .project-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .project-card p { color: var(--text-muted); margin-bottom: 2rem; flex-grow: 1; }
+        .project-link { 
+            color: var(--primary); 
+            text-decoration: none; 
+            font-weight: 500; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            transition: gap 0.3s, color 0.3s; 
+        }
+        .project-card:hover .project-link { gap: 0.8rem; color: #fff; }
+
+        /* Education */
+        .edu-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+        .edu-icon { 
+            width: 50px; height: 50px; 
+            background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(129,140,248,0.1));
+            border: 1px solid rgba(129,140,248,0.2);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--secondary);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        /* Contact */
+        .contact-card { text-align: center; max-width: 800px; margin: 0 auto; }
+        .contact-card h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .contact-card p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .contact-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        
+        .social-btn {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glow);
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-deep);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-glow);
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+
+        /* Scroll Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Background -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">Jaganath<span>.</span></div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="badge">Available for opportunities</div>
+                <h1>Jaganath Charulu P</h1>
+                <p>A passionate <span class="gradient-text">Computer Science Undergrad</span> specializing in Artificial Intelligence and Machine Learning. Building scalable applications and intelligent systems.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        <i data-feather="folder"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i data-feather="mail"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="reveal">
+            <div class="section-header">
+                <h2><i data-feather="user"></i> About Me</h2>
+                <p>My background and trajectory</p>
+            </div>
+            <div class="glass-panel">
+                <p class="about-text">
+                    I am a Computer Science undergraduate with a deep focus on <strong>Artificial Intelligence and Machine Learning</strong>. 
+                    I thrive on the challenge of building scalable, robust software applications that solve genuine real-world problems. With a solid foundation in core computer science principles and modern development tools, I continuously explore innovative frameworks and predictive algorithms to elevate the solutions I develop.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
+            <div class="section-header">
+                <h2><i data-feather="code"></i> Technical Arsenal</h2>
+                <p>Tools and technologies I use to build</p>
+            </div>
+            <div class="grid-3">
+                <div class="glass-panel skill-group">
+                    <h3><i data-feather="terminal" width="20"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">C</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+                <div class="glass-panel skill-group">
+                    <h3><i data-feather="layout" width="20"></i> Web Dev</h3>
+                    <div class="skill-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Next.js</span>
+                    </div>
+                </div>
+                <div class="glass-panel skill-group">
+                    <h3><i data-feather="tool" width="20"></i> Ecosystem</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Git</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="reveal">
+            <div class="section-header">
+                <h2><i data-feather="briefcase"></i> Featured Projects</h2>
+                <p>Some of my recent creations</p>
+            </div>
+            <div class="grid-2">
+                <div class="glass-panel project-card">
+                    <h3>GST Billing System</h3>
+                    <p>A comprehensive enterprise billing platform engineered with automated GST calculation modules, real-time inventory tracking, business analytics dashboards, and a secure user authentication layer.</p>
+                    <a href="#" class="project-link">Explore Details <i data-feather="arrow-right" stroke-width="2.5" width="18"></i></a>
+                </div>
+                <div class="glass-panel project-card">
+                    <h3>Smart Diabetic Foot Insole</h3>
+                    <p>An innovative IoT healthcare solution utilizing an ESP32 microcontroller paired with high-precision pressure sensors. It actively transmits data to a coupled mobile application for real-time health monitoring.</p>
+                    <a href="#" class="project-link">Explore Details <i data-feather="arrow-right" stroke-width="2.5" width="18"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="reveal">
+            <div class="section-header">
+                <h2><i data-feather="book-open"></i> Education</h2>
+                <p>My academic foundation</p>
+            </div>
+            <div class="glass-panel edu-item">
+                <div class="edu-icon">
+                    <i data-feather="award"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Kalasalingam University</h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 0.8rem;">B.Tech CSE (Artificial Intelligence & Machine Learning)</p>
+                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 0.4rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; border: 1px solid rgba(56, 189, 248, 0.2);">
+                        <i data-feather="star" width="16" fill="currentColor"></i> CGPA: 7.78
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <div class="glass-panel contact-card">
+                <h3>Let's create something together</h3>
+                <p>Whether you have a question, an opportunity, or just want to say hi, my inbox is always open. I'll get back to you as soon as possible.</p>
+                <div class="contact-links">
+                    <a href="mailto:jaganp0001@gmail.com" class="social-btn">
+                        <i data-feather="send"></i> Email Me
+                    </a>
+                    <a href="https://github.com/gmy12811-sys" target="_blank" class="social-btn">
+                        <i data-feather="github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/p-jaganath-charulu-27a346327" target="_blank" class="social-btn">
+                        <i data-feather="linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Designed and Built with passion &copy; 2026 Jaganath Charulu P.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Init Feather Icons
+        feather.replace();
+
+        // Scroll Reveal Animations
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Trigger threshold
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        
+        window.addEventListener("scroll", reveal);
+        // Trigger manually on load
+        reveal();
+    </script>
+</body>
+</html>
